@@ -1,0 +1,16 @@
+{
+  "name": "my-first-truffle-project",
+  "version": "0.0.1",
+  "engines": {
+    "node": "16.13.x",
+    "npm": "8.1.x"
+  },
+  "devDependencies": {
+    "ganache-cli": "^6.12.2"
+  },
+  "dependencies": {
+    "ganache": "^6.4.5",
+    "live-server": "^1.2.1",
+    "web3": "^0.20.7"
+  }
+}

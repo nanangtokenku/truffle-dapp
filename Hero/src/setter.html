@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BlockChain Hello World</title>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  <script language="javascript" type="text/javascript" src="./abi.js"></script>
+  <script>
+  window.addEventListener('load', async () => {
+
+	console.log("prepare");
+		
+		const HelloWorld = artifacts.require("HelloWorld");
+ 
+contract('HelloWorld', () => {
+ 
+  // initialise the contract instance before running tests
+  let contractInstance = null;
+  before(async () => {
+    contractInstance = await HelloWorld.deployed();
+  });
+ 
+  // TEST 1
+  it('initial name should be Ioana', async () => {
+    // call contract's function
+    const currentName = await contractInstance.getName.call();
+    // check condition
+    console.log(currentName, "Ioana", "the name is not Ioana");
+  });
+ 
+  // TEST 2
+  it('should change name in John', async () => {
+    // change name in contract
+    await contractInstance.changeName("John");
+    // get the current name
+    const currentName = await contractInstance.getName.call();
+    // check condition
+    console.log(currentName, "John", "the name is not John");
+  });
+ 
+});
+
+
+
+
+
+  });
+</script>
+ 
+  </script>
+</head>
+<body>
+  <a href="contractAdress.html">Contract Adress</a>
+  &nbsp;
+  <a href="message.html">Message</a>
+  &nbsp;
+  <a href="setter.html">Setter</a>
+  &nbsp;
+  
+  <a href="message.html">Message</a>
+  <div style="height:20px;"></div>
+  <div id="message"></div>
+</body>
+</html>

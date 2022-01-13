@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BlockChain Hello World</title>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  <script language="javascript" type="text/javascript" src="./abi.js"></script>
+  <script>
+  window.addEventListener('load', async () => {
+
+    var contract;
+    const contractAddress = "0xDC66476d10E42399533aE93753659536dc5dDd39";
+
+    const contractMessage = async () => {
+      contract = new web3.eth.Contract(abi, contractAddress);
+      let message = await contract.methods.getMessage().call();
+      return message;
+    }
+
+    // Modern dapp browsers...
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      try {
+        // Request account access if needed
+        await ethereum.enable();
+        var message = await contractMessage();
+        var elm = document.getElementById("message");
+        elm.innerHTML = message;
+		console.log("User allow  account access...");
+      } catch (error) {
+        // User denied account access...
+		console.log("User denied account access...");
+      }
+    }
+    // Non-dapp browsers...
+    else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+  });
+</script>
+ 
+  </script>
+</head>
+<body>
+  <a href="contractAdress.html">Contract Adress</a>
+  &nbsp;
+  <a href="message.html">Message</a>
+  &nbsp;
+  <a href="setter.html">Setter</a>
+  &nbsp;
+  
+  <a href="message.html">Message</a>
+  <div style="height:20px;"></div>
+  <div id="message"></div>
+</body>
+</html>
